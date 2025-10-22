@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'up' => 'rails/health#show', as: :rails_health_check
   # Defines the root path route ("/")
   # root "posts#index"
-<<<<<<< HEAD
   #get 'movies/index'
   #get 'movies/new'
   #get 'movies/create'
@@ -25,15 +24,11 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:new, :create]
     resources :reviews, only: :create
   end
+
+  resources :movies do
+    resources :bookmarks, only: [:new, :create]
+  end
+
   resources :bookmarks, only: :destroy
   resources :reviews, only: :destroy
-=======
-  resources :lists do
-    resources :bookmarks, only: %i[new create]
-  end
-  resources :movies do
-    resources :bookmarks, only: %i[new create]
-  end
-  resources :bookmarks, only: %i[destroy]
->>>>>>> 45e19eca97f4264d309e9bbd282c068f9804e6a3
 end
