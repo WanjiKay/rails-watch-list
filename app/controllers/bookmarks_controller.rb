@@ -1,4 +1,5 @@
 class BookmarksController < ApplicationController
+  before_action :set_list
 
   def new
     @list = List.find(params[:list_id])

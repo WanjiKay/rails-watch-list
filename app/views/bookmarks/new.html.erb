@@ -1,0 +1,13 @@
+<h1> Add Bookmark to <%= @list.name%> </h1>
+
+<%= form_for [@list, @bookmark] do |f| %>
+<div>
+  <%= f.label :movie_id, "Pick Movie" %>
+  <%= f.collection :movie_id, Movie.all, :id, :title %>
+</div>
+
+<div>
+  <%= f.submit "Add Bookmark" %>
+</div>
+
+<% end %>
