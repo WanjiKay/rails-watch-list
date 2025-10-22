@@ -1,18 +1,27 @@
 class ReviewsController < ApplicationController
 
   def create
-    @list = list.find(params[:list_id])
-    @review = list.reviews(review_params)
-    if @review.saveredirect_to @list
+    @review = Review.new(review_params)
+    @list = List.find(params[:list_id])
+    @review.list = @list
+    if @review.save
+      redirect_to list_path (@list)
     else
-      render 'list/show'
+      @bookamrk = Bookmark.ew
+      render 'list/show', status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to list_path(@review.list)
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:content)
+    params.require(:review).permit(:comment, :rating)
   end
 
 end
