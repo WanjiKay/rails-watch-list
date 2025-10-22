@@ -1,5 +1,9 @@
 class ListsController < ApplicationController
+<<<<<<< HEAD
   before_action :set_list, only: [:show, :destroy]
+=======
+  before_action :set_list, only: [:show, :edit, :update]
+>>>>>>> 45e19eca97f4264d309e9bbd282c068f9804e6a3
 
   def index
     @lists = List.all

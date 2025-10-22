@@ -7,8 +7,12 @@ class BookmarksController < ApplicationController
   end
 
   def create
+<<<<<<< HEAD
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.list = @list
+=======
+    @bookmark = @list.bookmarks.new(bookmark_params)
+>>>>>>> 45e19eca97f4264d309e9bbd282c068f9804e6a3
     if @bookmark.save
       redirect_to list_path(@list)
     else
@@ -18,8 +22,18 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
+<<<<<<< HEAD
     @bookmark.destroy
     redirect_to list_path(@bookmark.list), status: :see_other
+=======
+    @bookmark = Bookmark.find(params[:id])
+    if @bookmark
+      @bookmark.destroy
+      redirect_to @bookmark.list
+    else
+      redirect_to lists_path
+    end
+>>>>>>> 45e19eca97f4264d309e9bbd282c068f9804e6a3
   end
 
   private
